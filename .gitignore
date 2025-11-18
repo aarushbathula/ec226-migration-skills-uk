@@ -1,0 +1,59 @@
+# macOS cruft
+.DS_Store
+.AppleDouble
+.Icon?
+._*
+
+# Editors / OS
+*.swp
+*.swo
+*~
+.vscode/
+.Rhistory
+.RData
+.Rproj.user/
+.Rproj
+
+# Stata temporary / backup files
+*.smcl
+*.log
+*.old
+*.lst
+*.tmp
+
+# LaTeX build artifacts (if you build paper here later)
+*.aux
+*.toc
+*.out
+*.log
+*.bbl
+*.blg
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+
+# Quarto / knitr cache (if used)
+*_cache/
+*.knit.md
+*.utf8.md
+*.Rmd.md
+
+# Data – ignore contents but keep structure via .gitkeep
+data/raw/*
+data/interim/*
+data/final/*
+!data/raw/.gitkeep
+!data/interim/.gitkeep
+!data/final/.gitkeep
+
+# Output – ignore contents but keep structure via .gitkeep
+output/tables/*
+output/figures/*
+output/logs/*
+!output/tables/.gitkeep
+!output/figures/.gitkeep
+!output/logs/.gitkeep
+
+# Local scripts/config that shouldn't be shared
+*.Rproj
+.env
