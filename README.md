@@ -1,12 +1,11 @@
-EC226 – Applied Econometrics Assignment
+# EC226 – Applied Econometrics Assignment
 
 Aarush Bathula · University of Warwick · 2025
 
 This repository contains a fully reproducible workflow for the EC226 Econometrics Project analysing how migrants’ countries of origin relate to skill-level outcomes in the UK labour market. The project merges UK 2021 Census microdata with external country-level datasets and implements ordered-probit, multinomial logit, and two-stage OLS models.
 
-⸻
 
-Repository Structure
+## Repository Structure
 ```
 ec226-migration-skills-uk/
 │
@@ -33,25 +32,21 @@ ec226-migration-skills-uk/
 ```
 Empty folders are versioned using .gitkeep files to preserve structure.
 
-⸻
-
-1. Overview of Research
+## 1. Overview of Research
 
 Objective
 
 To quantify how origin-country characteristics—GDP per capita, migration distance, tertiary education expenditure, colonial ties, English language prevalence—predict migrants’ employment skill-level in the UK.
 
 Data Sources
-	•	UK 2021 Census Microdata
-	•	World Bank GDP per capita (NY.GDP.PCAP.CD)
-	•	World Bank Tertiary Education Expenditure (SE.XPD.TERT.PC.ZS)
-	•	CEPII Migration Distance Data
-	•	Custom-built country-to-code crosswalk
-	•	Derived variables: time spent in UK, UK- vs foreign-born cohort, pre/post Brexit cohort, skill categories.
+	-	UK 2021 Census Microdata
+	-	World Bank GDP per capita (NY.GDP.PCAP.CD)
+	-	World Bank Tertiary Education Expenditure (SE.XPD.TERT.PC.ZS)
+	-	CEPII Migration Distance Data
+	- 	Custom-built country-to-code crosswalk
+	-	Derived variables: time spent in UK, UK- vs foreign-born cohort, pre/post Brexit cohort, skill categories.
 
-⸻
-
-2. Reproducibility
+## 2. Reproducibility
 
 Step 1. Clone the repository
 ```
@@ -62,7 +57,7 @@ Step 2. Place raw data files into:
 
 ```data/raw/```
 
-Names must match those referenced inside 01_data_build.do.
+Names must match those referenced inside `01_data_build.do`.
 
 Step 3. Build the dataset
 
@@ -71,13 +66,11 @@ Open Stata and run:
 ```do code/master.do```
 
 This executes:
-	1.	01_data_build.do → Imports + merges + cleans all data
-	2.	02_analysis.do → Runs all models, margins, figures, tables
+	1.	`01_data_build.do` → Imports + merges + cleans all data
+	2.	`02_analysis.do` → Runs all models, margins, figures, tables
 	3.	Exports results into output/
-
-⸻
-
-3. Main Outputs
+	
+## 3. Main Outputs
 
 Tables
 	•	Skill distribution by origin-country
@@ -92,9 +85,8 @@ Figures
 	•	vs. Tertiary expenditure
 	•	Country-level probability scatterplots
 
-⸻
-
-5. Reproducibility Notes
+## 4. Reproducibility Notes
 	•	No datasets or confidential Census microdata are included in this repository.
 	•	Scripts assume Stata 17+.
 	•	All paths are defined relative to $PROJROOT at the top of 01_data_build.do.
+
