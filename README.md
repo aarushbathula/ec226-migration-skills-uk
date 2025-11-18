@@ -36,15 +36,15 @@ Empty folders are versioned using .gitkeep files to preserve structure.
 
 Objective
 
-To quantify how origin-country characteristics—GDP per capita, migration distance, tertiary education expenditure, colonial ties, English language prevalence—predict migrants’ employment skill-level in the UK.
+To quantify how origin-country characteristics such as GDP per capita, migration distance, tertiary education expenditure, colonial ties, and English language prevalence predict migrants’ employment skill-level in the UK.
 
-Data Sources
-	-	UK 2021 Census Microdata
-	-	World Bank GDP per capita (NY.GDP.PCAP.CD)
-	-	World Bank Tertiary Education Expenditure (SE.XPD.TERT.PC.ZS)
-	-	CEPII Migration Distance Data
-	- 	Custom-built country-to-code crosswalk
-	-	Derived variables: time spent in UK, UK- vs foreign-born cohort, pre/post Brexit cohort, skill categories.
+Data Sources:
+- UK 2021 Census Microdata
+- World Bank GDP per capita (NY.GDP.PCAP.CD)
+- World Bank Tertiary Education Expenditure (SE.XPD.TERT.PC.ZS)
+- CEPII Migration Distance Data
+- Custom-built country-to-code crosswalk
+- Derived variables: time spent in UK, UK- vs foreign-born cohort, pre/post Brexit cohort, skill categories.
 
 ## 2. Reproducibility
 
@@ -89,4 +89,5 @@ Figures
 	•	No datasets or confidential Census microdata are included in this repository.
 	•	Scripts assume Stata 17+.
 	•	All paths are defined relative to $PROJROOT at the top of 01_data_build.do.
+
 
