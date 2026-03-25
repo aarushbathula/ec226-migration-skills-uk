@@ -1,0 +1,70 @@
+
+\documentclass[12pt, a4paper]{article}
+\usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm,marginparwidth=1.75cm]{geometry}
+\usepackage{array}
+
+% =========================
+% Packages
+% =========================
+\usepackage{graphicx, natbib, enumitem, tabularx, ragged2e}
+\usepackage[hidelinks,colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage{booktabs, float, parskip}
+\usepackage{caption, amsmath, amsfonts}
+ % for positioning
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{L}{>{\RaggedRight\arraybackslash}X}
+
+
+% =========================
+%% We install packages to a) insert graphics  b) create Harvard citations c) create clickable hyperlinks respectively.  
+% =========================
+
+
+\title{Examining country-of-origin effects on the occupational category of migrant workers in the UK.}
+\author{EC226 Assignment in Applied Econometrics - Group 12-3}
+\date{March 2025}
+
+\begin{document}
+
+\bibliographystyle{agsm}
+
+\maketitle
+
+
+% =========================
+\section{Introduction} \label{sec:intro}
+% =========================
+
+
+%% You should give a motivation for your work and discuss the policy (or other) issues which you are trying to address. Given this context, you should then describe your detailed research question(s).
+
+%% You should lay out the crucial parts of your argument. It is often nice to finish the introduction with a road map which tells the reader the structure of the essay and gives very brief summary of your findings.
+
+Since 2022, immigration levels to the UK have climbed significantly  \citep{ONS2023_LTIM}. These trends, coupled with an overhaul of immigration policy, have reignited debates about migrants’ roles in the labour market. In particular, questions arise as to whether immigrants are employed in jobs commensurate with their skills or if “brain waste” is occurring, whereby skilled workers end up in lower-skill occupations. We note a noticeable gap in literature assessing skill matching effects within the UK labour market, akin to prior analyses conducted for the United States by \citet{MattooBrainWaste}. Our study is motivated precisely by this gap as we explore the question: how does an immigrant’s country of origin affect their employment within distinct skill-based occupational categories (high-skilled, medium-skilled, and low-skilled) in the UK?
+
+Answering this question is crucial for maximising the productive potential of migrants and for informing post-Brexit immigration and labour market policies. We are able to test the application of self-selection migration theory, exploring how occupational outcomes of immigrants shift due to changes in labour market expectations. To achieve these goals, we leverage rich data from the 2021 UK Census and control for key individual characteristics such as level of educational attainment, age, sex, and duration of stay in the UK. 
+
+We find that country-of-origin effects are pronounced at the extremes of the skill distribution. Immigrants from certain origins are significantly more likely to be employed in high-skill occupations, while others are disproportionately in low-skill work, even after accounting for individual attributes. We note that immigration seems to have an insignificant impact on medium-skill labour - consistent with a "U-shaped" model. Much of the country-level differences can be attributed to national income levels in and distance from the country of origin. Our analysis indicates that labour market expectations following the Brexit referendum induced greater positive selection on occupation skill in immigrants.
+
+The remainder of this paper is organised as follows. Section 2 provides a review of relevant literature on immigrants’ occupational outcomes and country-of-origin effects. Section 3 describes the data and sample, and outlines the theoretical framework and econometric methodology. Section 4 presents the empirical results. Section 5 discusses the implications of our findings for theory and policy, including the post-Brexit labour market context. Section 6 concludes with a summary of key insights and suggestions for future research.
+
+
+% =========================
+\section{Literature Review} \label{sec:lit}
+% =========================
+A rich body of literature has examined the labour market integration of immigrants, often highlighting a mismatch between immigrants’ skills and the jobs they initially obtain. In theory, workers with higher human capital should attain better-paying, higher-skilled occupations \citep{BeckerHumanCap}. Empirical studies, however, have noted that foreign-acquired skills may not fully translate into host-country labour market success. Immigrants frequently experience “brain waste,” where even well-educated individuals find themselves in jobs below their qualification level. This pattern is documented by \citet{MattooBrainWaste}, studying immigrants in the United States. They show that occupational outcomes vary strikingly by country of origin among immigrants with similar education. \citet{MattooBrainWaste} attribute these disparities to origin-country attributes affecting skill transferability. Their findings suggest country of origin can serve as a proxy for the quality and transferability of an immigrant’s human capital. However, \citet{MattooBrainWaste}'s approach treats occupational categories as unordered, employing a multinomial logistic model that does not account for the social hierarchy that is inherent in skill-levels. Our study seeks to build on this by using a ranked probit to respect this implicit ranking.
+
+Another relevant strand of literature comes from \citet{BorjasSelfSelection}'s self-selection model of migration, which projects that the skill composition of immigrants varies systematically based on country-of-origin conditions(incentives and barriers). In high-income source countries, only individuals with relatively high-skills and earning potential are likely to migrate given the high opportunity cost of leaving (foregoing strong home-country wages). Lower-skilled individuals from low-income nations have an incentive to migrate for better wages abroad, if they possess the necessary funds to migrate. Distance and policy-barriers can also shape incentives for migration: greater distances between origin and destination countries raise the cost of migration, so only those expecting large returns (high-skill individuals) might migrate. Migrants from countries with restrictive entry requirements tend to be filtered out relative to free movement regimes as well. We exploit the Brexit referendum to make inferences about the validity of this reasoning. These theories inform our choice of key explanatory variables: origin-country GDP per capita and distance from the UK to capture development and migration costs.
+
+Empirical research on the UK aligns with other international study, while offering specific variables that are context-dependent. \citet{DustmannFabbriLanguage} show that English language proficiency has a strong positive effect on immigrants’ employment probabilities in the UK. Indeed, \citet{MattooBrainWaste} noted that immigrants from ex-British colonies achieved especially good occupational outcomes in the US, likely due to their English-medium education and other transferable credentials. Culture and network effects are harder to measure, but can facilitate better job matches for certain groups. Migrants from countries with very different language and institutional contexts to the UK may face downgrading of their jobs despite high qualifications \citep{LindleyUKOverEd}. The prevalence of these outcomes reflect an insufficient allocation of human capital, causing "brain waste" in the UK setting.
+
+Lastly, literature notes a U-shaped curve in immigrants’ occupational trajectories \citep{ZorluUshaped}. Immigrant workers could experience an initial occupational downgrade upon arrival, followed by upward mobility as they assimilate and acquire host-country experience \citep{ChiswickTimeSpent}. Given waves of immigration, this can result in a distribution where immigrants are over-represented at both tail ends of the skill distribution. This could mean highly educated immigrants eventually climb into the high-skilled tier, or remain stuck in low-skilled employment, creating a gap in the medium-skill range. Our research expands on such relatively under-researched phenomenon while building on the theoretical models and econometric gaps in existing literature. Testable hypotheses for our empirical work are: 
+
+\begin{enumerate}[label=(\roman*)]
+    \item origin-country English and colonial ties should raise the probability of high-skill employment and lower the probability of low-skill employment
+    \item higher GDP per capita and greater distance should likewise favour positive selection
+    \item medium-skill outcomes should exhibit weaker or null origin effects
+\end{enumerate}
+
+
+\end{document}
