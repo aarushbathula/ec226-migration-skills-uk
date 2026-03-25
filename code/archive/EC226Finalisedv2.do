@@ -1,7 +1,21 @@
 
 
 *–––– step 0: setting project root directory, you just have to replace it with your directory and ensure the directory contains World Bank GDPpc Data, World Bank Tertiary Expenditure data (with interpolation) and 2021 UK Census Data
-global PROJROOT "/Users/marcuschoi/Desktop/warwick/year 2/Econ/Econometrics/Project/Working FIles" 
+capture confirm file "code/archive/EC226Finalisedv2.do"
+if _rc == 0 {
+    global PROJROOT "`c(pwd)'"
+}
+else {
+    capture confirm file "EC226Finalisedv2.do"
+    if _rc == 0 {
+        cd ../..
+        global PROJROOT "`c(pwd)'"
+    }
+    else {
+        di as error "Run the archival script from the repo root or from code/archive/."
+        exit 601
+    }
+}
 
 
 * no need to change any of the below
@@ -882,4 +896,3 @@ margins country_of_birth_25a, predict(outcome(1)) atmeans post
 estimates store low_w  
 outreg2 using margins_women.tex, append ///
     ctitle("Low‐Skill (women)") label    
-

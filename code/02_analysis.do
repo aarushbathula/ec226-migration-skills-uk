@@ -8,7 +8,22 @@ set more off
 set varabbrev off
 
 * Assumes 01_data_build.do has already run
-global PROJROOT "/path/to/ec226-migration-skills-uk"
+capture confirm file "code/master.do"
+if _rc == 0 {
+    global PROJROOT "`c(pwd)'"
+}
+else {
+    capture confirm file "master.do"
+    if _rc == 0 {
+        cd ..
+        global PROJROOT "`c(pwd)'"
+    }
+    else {
+        di as error "Run the analysis from the repo root or from the code/ folder."
+        exit 601
+    }
+}
+
 global FINAL  "$PROJROOT/data/final"
 global OUT    "$PROJROOT/output"
 global TABLES "$OUT/tables"

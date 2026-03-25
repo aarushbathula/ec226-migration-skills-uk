@@ -1,93 +1,69 @@
-# EC226 – Applied Econometrics Assignment
+# EC226: Migration, Skills, and the UK Labour Market
 
 Aarush Bathula · University of Warwick · 2025
 
-This repository contains a fully reproducible workflow for the EC226 Econometrics Project analysing how migrants’ countries of origin relate to skill-level outcomes in the UK labour market. The project merges UK 2021 Census microdata with external country-level datasets and implements ordered-probit, multinomial logit, and two-stage OLS models.
+This repository is a replication package for an applied econometrics project studying how migrant background, English-language exposure, and country-of-birth characteristics relate to occupational skill outcomes in the UK labour market. The workflow combines UK Census microdata with external country-level covariates and estimates descriptive, ordered-response, multinomial, and second-stage models.
 
+## What Lives Here
 
-## Repository Structure
+- `code/`: Stata scripts for data construction, analysis, and figures/tables
+- `data/`: local-only raw, intermediate, and final datasets
+- `output/`: generated tables, figures, and logs
+- `paper/`: manuscript files, Overleaf sources, and placeholders
+
+## Research Overview
+
+The project examines how origin-country characteristics such as GDP per capita, migration distance, tertiary education expenditure, colonial ties, and English-language prevalence predict migrants' employment skill level in the UK.
+
+Core inputs include:
+
+- UK 2021 Census microdata
+- World Bank GDP per capita
+- World Bank tertiary education expenditure
+- CEPII migration distance data
+- country-code crosswalk files
+- constructed cohort and migration-history variables
+
+## How To Run
+
+Run the project from the repository root with Stata 18:
+
+```stata
+do code/master.do
 ```
-ec226-migration-skills-uk/
-│
-├── code/
-│   ├── 01_data_build.do        # Complete data construction pipeline
-│   ├── 02_analysis.do          # All econometric models (Tables, margins, plots)
-│   ├── master.do               # Orchestration script: build → analysis
-│   └── archive/                # Previous script versions (not executed)
-│
-├── data/
-│   ├── raw/                    # Census & World Bank raw files (.gitkept)
-│   ├── interim/                # Cleaned intermediate datasets
-│   └── final/                  # Final analysis dataset (not tracked)
-│
-├── output/
-│   ├── tables/                 # LaTeX tables
-│   ├── figures/                # Exported graphs
-│   └── logs/                   # Stata logs for reproducibility
-│
-├── paper/
-│   └── main.pdf / main.tex     # Final write-up (not included in repo)
-│
-└── README.md
-```
-Empty folders are versioned using .gitkeep files to preserve structure.
 
-## 1. Overview of Research
+The master script detects the repository root from either the root directory or the `code/` folder, so no personal machine path is required.
 
-Objective
+## Pipeline
 
-To quantify how origin-country characteristics such as GDP per capita, migration distance, tertiary education expenditure, colonial ties, and English language prevalence predict migrants’ employment skill-level in the UK.
+1. `code/01_data_build.do`
+2. `code/02_analysis.do`
 
-Data Sources:
-- UK 2021 Census Microdata
-- World Bank GDP per capita (NY.GDP.PCAP.CD)
-- World Bank Tertiary Education Expenditure (SE.XPD.TERT.PC.ZS)
-- CEPII Migration Distance Data
-- Custom-built country-to-code crosswalk
-- Derived variables: time spent in UK, UK- vs foreign-born cohort, pre/post Brexit cohort, skill categories.
+The first script builds the analysis dataset and the second script produces descriptive tables, margins, regressions, and figures.
 
-## 2. Reproducibility
+## Data Availability
 
-Step 1. Clone the repository
-```
-git clone git@github.com:aarushbathula/ec226-migration-skills-uk.git
-cd ec226-migration-skills-uk
-```
-Step 2. Place raw data files into:
+The repository does not include the raw source files used to build the dataset.
 
-```data/raw/```
+- Place raw inputs under `data/raw/`
+- Let intermediate files be written to `data/interim/`
+- Let final analysis files be written to `data/final/`
 
-Names must match those referenced inside `01_data_build.do`.
+The `.gitignore` preserves the directory structure in Git while keeping local data contents untracked.
 
-Step 3. Build the dataset
+## Main Outputs
 
-Open Stata and run:
+Expected generated outputs include:
 
-```do code/master.do```
+- `output/tables/*.tex`
+- `output/figures/*.png`
+- `output/logs/*.log`
 
-This executes:
-	1.	`01_data_build.do` → Imports + merges + cleans all data
-	2.	`02_analysis.do` → Runs all models, margins, figures, tables
-	3.	Exports results into output/
-	
-## 3. Main Outputs
+These files are reproducible from the scripts and are intentionally excluded from version control.
 
-Tables
-	•	Skill distribution by origin-country
-	•	Base ordered-probit model
-	•	Marginal effects (skill probabilities)
-	•	Second-stage OLS regressions (GDP, distance, tertiary education, colonial history)
-	•	Multinomial logit robustness
+## Reproducibility Notes
 
-Figures
-	•	Predicted probabilities vs. GDP
-	•	vs. Migration Distance
-	•	vs. Tertiary expenditure
-	•	Country-level probability scatterplots
-
-## 4. Reproducibility Notes
-	•	No datasets or confidential Census microdata are included in this repository.
-	•	Scripts assume Stata 17+.
-	•	All paths are defined relative to $PROJROOT at the top of 01_data_build.do.
-
-
+- The scripts are written for Stata 18
+- Required user-written commands include `estout` and `outreg2`
+- The code resolves paths relative to the repository rather than a machine-specific home directory
+- Archived scripts under `code/archive/` are retained for reference, but the active pipeline is the top-level one

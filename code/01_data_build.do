@@ -8,8 +8,21 @@ set more off
 set varabbrev off
 
 * 0. Project paths ---------------------------------------------------------
-* EDIT THIS to point to the root of your EC226 repo
-global PROJROOT "/path/to/ec226-migration-skills-uk"
+capture confirm file "code/master.do"
+if _rc == 0 {
+    global PROJROOT "`c(pwd)'"
+}
+else {
+    capture confirm file "master.do"
+    if _rc == 0 {
+        cd ..
+        global PROJROOT "`c(pwd)'"
+    }
+    else {
+        di as error "Run the data build from the repo root or from the code/ folder."
+        exit 601
+    }
+}
 
 global RAW    "$PROJROOT/data/raw"
 global INT    "$PROJROOT/data/interim"
@@ -26,6 +39,7 @@ foreach d in "$RAW" "$INT" "$FINAL" "$OUT" "$TABLES" "$FIGS" "$LOGS" {
 
 * Raw / intermediate filenames
 local cwfile    "$INT/country_crosswalk.dta"
+local cwmerged  "$INT/country_crosswalk_merged.dta"
 local gdpdt     "$RAW/gdp_per_capita_2021.dta"
 local census21  "$RAW/2021.dta"
 local censusgdp "$INT/census_with_gdp.dta"

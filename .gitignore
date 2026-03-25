@@ -42,6 +42,7 @@
 data/raw/*
 data/interim/*
 data/final/*
+!data/README.md
 !data/raw/.gitkeep
 !data/interim/.gitkeep
 !data/final/.gitkeep
@@ -50,9 +51,22 @@ data/final/*
 output/tables/*
 output/figures/*
 output/logs/*
+!output/README.md
 !output/tables/.gitkeep
 !output/figures/.gitkeep
 !output/logs/.gitkeep
+
+# Paper – ignore generated manuscripts but keep source/documentation
+paper/*.pdf
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.toc
+paper/*.synctex.gz
+paper/*.bbl
+paper/*.blg
+paper/*.fls
+paper/*.fdb_latexmk
 
 # Local scripts/config that shouldn't be shared
 *.Rproj
