@@ -58,6 +58,7 @@ output/logs/*
 
 # Paper – ignore generated manuscripts but keep source/documentation
 paper/*.pdf
+paper/**/*.png
 paper/*.aux
 paper/*.log
 paper/*.out
